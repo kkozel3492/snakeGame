@@ -41,14 +41,16 @@ def snakeGame():
 
         # Detect collision with wall
         if gameSnake.head.xcor() > 280 or gameSnake.head.xcor() < -280 or gameSnake.head.ycor() > 280 or gameSnake.head.ycor()  < -280:
-            scoreboard.gameOver()
-            gameIsOn = False
+            scoreboard.reset()
+            gameSnake.reset()
+            # gameIsOn = False
 
         #Detect collision with snake
         for segment in gameSnake.body[1:]:
             if gameSnake.head.distance(segment) < 10:
-                gameIsOn = False
-                scoreboard.gameOver()
+                gameSnake.reset()
+                scoreboard.reset()
+
     newScrn = GameDetails()
     keepPlaying = newScrn.playAgain(scoreboard)
     if keepPlaying == 'y':
@@ -61,3 +63,4 @@ def snakeGame():
     screen.exitonclick()
 
 snakeGame()
+
